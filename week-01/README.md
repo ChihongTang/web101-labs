@@ -1,7 +1,7 @@
 
 ### 2–4. Network Tab Observation
-Opened BBC as an example
-Opened a news site, right clicked then inspect then go to Network:
+
+Opened BBC as an example, right clicked then inspect then go to Network:
  
 | Type | What I Found |
 |------|-------------|
