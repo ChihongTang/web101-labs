@@ -20,7 +20,7 @@ Created `hello.html` using the slide 10 example structure (`<!DOCTYPE html>`, `<
 Double-clicked the file → browser opened it locally (`file:///...`). 
  
 ### 7. Committed to GitHub
-```bash
+```
 Created a folder with readme.md inside web101-labs/README.md
 git clone the folder
 git add week-01/hello.html
