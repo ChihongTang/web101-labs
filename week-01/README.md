@@ -21,8 +21,8 @@ Double-clicked the file → browser opened it locally (`file:///...`).
  
 ### 7. Committed to GitHub
 
-Created a folder with readme.md inside web101-labs/README.md
-git clone the folder
-git add week-01/hello.html
-git commit -m "Add hello.html into week-01 folder"
+Created a folder with readme.md inside web101-labs/README.md\
+git clone the folder\
+git add week-01/hello.html\
+git commit -m "Add hello.html into week-01 folder"\
 
