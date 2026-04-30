@@ -1,6 +1,7 @@
 
 ### 2–4. Network Tab Observation
-Opened a news site, hit **F12 → Network tab**, reloaded the page, and identified:
+Opened BBC as an example
+Opened a news site, right clicked then inspect then go to Network:
  
 | Type | What I Found |
 |------|-------------|
@@ -10,7 +11,7 @@ Opened a news site, hit **F12 → Network tab**, reloaded the page, and identifi
 | Image | A `.jpg` or `.webp` image resource |
  
 **HTML request headers observed:**
-- `Request URL` – full URL of the page
+- `Request URL` – https://www.bbc.com/
 - `Request Method` – `GET`
 - `Status Code` – `200 OK`
 - `Response Headers` – included `Content-Type: text/html`, `Cache-Control`, `Server`
@@ -20,9 +21,8 @@ Double-clicked the file → browser opened it locally (`file:///...`).
  
 ### 7. Committed to GitHub
 ```bash
-git init
-git add .
-git commit -m "Week 01: add hello.html and README"
-git remote add origin https://github.com/nhimdara/WCT-week1.git
-git push -u origin main
+Created a folder with readme.md inside web101-labs/README.md
+git clone the folder
+git add week-01/hello.html
+git commit -m "Add hello.html into week-01 folder"
 ```
