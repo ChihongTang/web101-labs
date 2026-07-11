@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div style="width: 20%; margin: auto; height: 250px; background-color: orange; justify-content: center; text-align: center;">
+    <h2 style="padding-top: 40px;">Palindrome Number</h2>
+
+    <input type="text" id="number" placeholder="Enter number" style="margin-bottom: 20px; height: 30px;" />
+    <br>
+    <button onclick="checkPalindrome()">Check</button>
+    <br>
+    <h3 id="result"></h3>
+    </div>
+  <script>
+    function isPalindromeMath(num) {
+    let original = num;
+    let reversed = 0;
+    
+    while (num > 0) {
+        let lastDigit = num % 10;
+        reversed = reversed * 10 + lastDigit;
+        num = Math.floor(num / 10);
+    }
+    let result = original === reversed;
+    return result;
+}
+    function checkPalindrome() {
+      let value = Number(document.getElementById("number").value);
+      let result = isPalindromeMath(value);
+      document.getElementById("result").innerHTML = result
+        ? "Number is a palindrome number"
+        : "Number is not a palindrome number";
+    }
+
+
+
+  </script>
+</body>
+</html>

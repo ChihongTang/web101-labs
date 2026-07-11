@@ -1,0 +1,55 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Number to String Converter</title>
+  </head>
+  <body>
+    <div style="width: 20%; margin: auto; height: 250px; background-color: orange; justify-content: center; text-align: center;">
+    <h2 style="padding-top: 40px;">Number to String Converter</h2>
+
+    <input type="text" id="number" placeholder="Enter number" style="margin-bottom: 20px; height: 30px;" />
+    <br>
+    <button onclick="convertNumber()">Convert</button>
+    <br>
+    <h3 id="result"></h3>
+    </div>
+
+    <script>
+      function convertNumber() {
+        let number = document.getElementById("number").value;
+
+        const words = {
+          0: "zero",
+          1: "one",
+          2: "two",
+          3: "three",
+          4: "four",
+          5: "five",
+          6: "six",
+          7: "seven",
+          8: "eight",
+          9: "nine",
+        };
+
+        let result = "";
+
+        for (let i = 0; i < number.length; i++) {
+          let digit = number[i];
+
+          if (words[digit] !== undefined) {
+            result += words[digit];
+          } else {
+            document.getElementById("result").innerHTML =
+              "Please enter numbers only!";
+            return;
+          }
+        }
+
+        document.getElementById("result").innerHTML = result;
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div style="width: 20%; margin: auto; height: 300px; background-color: orange; justify-content: center; text-align: center; padding-bottom: 20px;">
+    <h2 style="padding-top: 40px;">Sorting an Array</h2>
+
+    <input type="text" id="numbers" placeholder="Write each number seperated by comma" style="margin-bottom: 10px; height: 30px; width: 80%;" />
+    <br>
+    <button onclick="sortArray()">Sort</button>
+    <br><br>
+
+    <h3 id="original"></h3>
+    <h3 id="result"></h3>
+  </div>
+
+  <script>
+    function sortArray() {
+      let input = document.getElementById("numbers").value;
+
+      let arr = input.split(",").map(item => Number(item.trim()));
+
+      document.getElementById("original").innerHTML = "Original: " + arr.join(",");
+
+      for (let i = 0; i < arr.length - 1; i++) {
+        for (let j = 0; j < arr.length - 1 - i; j++) {
+          if (arr[j] > arr[j + 1]) {
+            let temp = arr[j];
+            arr[j] = arr[j + 1];
+            arr[j + 1] = temp;
+          }
+        }
+      }
+
+      document.getElementById("result").innerHTML = "Sorted: " + arr.join(",");
+    }
+  </script>
+</body>
+</html>
