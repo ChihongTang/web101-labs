@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Grade Checker</title>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eef1f6;
+    font-family: sans-serif;
+  }
+
+  .card {
+    background: #ffffff;
+    width: 380px;
+    max-width: 90vw;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    padding: 36px 32px;
+  }
+
+  h1 {
+    font-size: 28px;
+    font-weight: 800;
+    margin: 0 0 24px 0;
+    color: #111;
+  }
+
+  .input-row {
+    display: flex;
+    gap: 10px;
+  }
+
+  #scoreInput {
+    flex: 1;
+    min-width: 0;
+    font-size: 16px;
+    padding: 10px 12px;
+    border: 2px solid #2f5fdd;
+    border-radius: 8px;
+    outline: none;
+  }
+
+  #checkBtn {
+    background: #1a2a6c;
+    color: #fff;
+    border: none;
+    padding: 0 22px;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+  }
+
+  #checkBtn:hover {
+    background: #142058;
+  }
+
+  #checkBtn:active {
+    transform: scale(0.97);
+  }
+
+  .result {
+    margin-top: 18px;
+    font-size: 19px;
+    font-weight: 700;
+    color: #e8a318;
+    min-height: 26px;
+  }
+
+  .result.error {
+    color: #d64545;
+  }
+</style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>Grade Checker</h1>
+    <div class="input-row">
+      <input type="number" id="scoreInput" placeholder="0-100" min="0" max="100">
+      <button id="checkBtn">Check</button>
+    </div>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    const scoreInput = document.getElementById('scoreInput');
+    const checkBtn = document.getElementById('checkBtn');
+    const result = document.getElementById('result');
+
+    function getGrade(score) {
+      if (score >= 90) return 'A';
+      if (score >= 80) return 'B';
+      if (score >= 70) return 'C';
+      if (score >= 60) return 'D';
+      return 'F';
+    }
+
+    function checkGrade() {
+      const value = scoreInput.value.trim();
+
+      if (value === '' || isNaN(value)) {
+        result.textContent = 'Please enter a valid number';
+        result.classList.add('error');
+        return;
+      }
+
+      const score = Number(value);
+
+      if (score < 0 || score > 100) {
+        result.textContent = 'Score must be between 0 and 100';
+        result.classList.add('error');
+        return;
+      }
+
+      const grade = getGrade(score);
+      result.classList.remove('error');
+      result.textContent = `Score: ${score} - Grade ${grade}`;
+    }
+
+    checkBtn.addEventListener('click', checkGrade);
+    scoreInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') checkGrade();
+    });
+  </script>
+
+</body>
+</html>

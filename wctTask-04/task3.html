@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Multiplication Table</title>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    padding: 40px 20px;
+    background: #eef1f6;
+    font-family:sans-serif;
+    display: flex;
+    justify-content: center;
+  }
+
+  .container {
+    width: 340px;
+    max-width: 100%;
+  }
+
+  h1 {
+    font-size: 30px;
+    font-weight: 800;
+    margin: 0 0 24px 0;
+    color: #111;
+  }
+
+  .input-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  #numInput {
+    flex: 1;
+    min-width: 0;
+    font-size: 16px;
+    padding: 10px 12px;
+    border: 1px solid #b9c0cc;
+    border-radius: 8px;
+    outline: none;
+  }
+
+  #numInput:focus {
+    border-color: #2f5fdd;
+  }
+
+  #generateBtn {
+    background: #1a2a6c;
+    color: #fff;
+    border: none;
+    padding: 0 22px;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+  }
+
+  #generateBtn:hover {
+    background: #142058;
+  }
+
+  #generateBtn:active {
+    transform: scale(0.97);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+  }
+
+  thead th {
+    background: #1a2a6c;
+    color: #fff;
+    text-align: center;
+    padding: 12px 10px;
+    font-size: 15px;
+  }
+
+  tbody td {
+    text-align: center;
+    padding: 12px 10px;
+    font-size: 15px;
+    background: #fff;
+  }
+
+  tbody tr:nth-child(even) td {
+    background: #dbe3f0;
+  }
+</style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Multiplication Table</h1>
+    <div class="input-row">
+      <input type="number" id="numInput" value="" placeholder="Enter a number">
+      <button id="generateBtn">Generate</button>
+    </div>
+    <table id="table" style="display: none;">
+      <thead>
+        <tr>
+          <th>Expression</th>
+          <th>Result</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
+
+  <script>
+    const numInput = document.getElementById('numInput');
+    const generateBtn = document.getElementById('generateBtn');
+    const table = document.getElementById('table');
+    const tableBody = document.getElementById('tableBody');
+
+    function generateTable() {
+      const value = numInput.value.trim();
+
+      if (value === '' || isNaN(value)) {
+        return;
+      }
+
+      const n = Number(value);
+      tableBody.innerHTML = '';
+
+      for (let i = 1; i <= 9; i++) {
+        const row = document.createElement('tr');
+
+        const exprCell = document.createElement('td');
+        exprCell.textContent = `${n} x ${i}`;
+
+        const resultCell = document.createElement('td');
+        resultCell.textContent = n * i;
+
+        row.appendChild(exprCell);
+        row.appendChild(resultCell);
+        tableBody.appendChild(row);
+      }
+
+      table.style.display = 'table';
+    }
+
+    generateBtn.addEventListener('click', generateTable);
+    numInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') generateTable();
+    });
+
+    generateTable();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Student Scores</title>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eef1f6;
+    font-family: sans-serif;
+  }
+
+  .card {
+    background: #ffffff;
+    width: 420px;
+    max-width: 90vw;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    padding: 40px 32px;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 30px;
+    font-weight: 800;
+    margin: 0 0 24px 0;
+    color: #111;
+  }
+
+  .scores-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+    min-height: 20px;
+  }
+
+  .score-item {
+    font-size: 22px;
+    font-weight: 700;
+  }
+
+  .score-item.low {
+    color: #d62828;
+  }
+
+  .score-item.mid {
+    color: #e8901a;
+  }
+
+  .score-item.high {
+    color: #1a7d2b;
+  }
+
+  .stats {
+    font-size: 15px;
+    color: #1a2a6c;
+    margin-bottom: 20px;
+  }
+
+  .input-row {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  #scoreInput {
+    width: 130px;
+    font-size: 15px;
+    padding: 10px 12px;
+    border: 2px solid #2f5fdd;
+    border-radius: 8px;
+    outline: none;
+  }
+
+  #addBtn {
+    background: #1a2a6c;
+    color: #fff;
+    border: none;
+    padding: 0 20px;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+  }
+
+  #addBtn:hover {
+    background: #142058;
+  }
+
+  #addBtn:active {
+    transform: scale(0.97);
+  }
+</style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>Student Scores</h1>
+    <div class="scores-list" id="scoresList"></div>
+    <div class="stats" id="stats"></div>
+    <div class="input-row">
+      <input type="number" id="scoreInput" placeholder="New score" min="0" max="100">
+      <button id="addBtn">Add score</button>
+    </div>
+  </div>
+
+  <script>
+    const scores = [45, 82, 91, 60, 77, 33];
+
+    const scoresList = document.getElementById('scoresList');
+    const stats = document.getElementById('stats');
+    const scoreInput = document.getElementById('scoreInput');
+    const addBtn = document.getElementById('addBtn');
+
+    function scoreClass(score) {
+      if (score < 50) return 'low';
+      if (score < 90) return 'mid';
+      return 'high';
+    }
+
+    function render() {
+      scoresList.innerHTML = '';
+      scores.forEach(score => {
+        const div = document.createElement('div');
+        div.className = `score-item ${scoreClass(score)}`;
+        div.textContent = score;
+        scoresList.appendChild(div);
+      });
+
+      if (scores.length === 0) {
+        stats.textContent = 'No scores yet';
+        return;
+      }
+
+      const highest = Math.max(...scores);
+      const lowest = Math.min(...scores);
+      const average = scores.reduce((sum, s) => sum + s, 0) / scores.length;
+
+      stats.textContent = `Highest: ${highest} | Lowest: ${lowest} | Average: ${average.toFixed(1)}`;
+    }
+
+    function addScore() {
+      const value = scoreInput.value.trim();
+      if (value === '' || isNaN(value)) return;
+
+      const score = Number(value);
+      if (score < 0 || score > 100) {
+        alert('Please enter a score between 0 and 100');
+        return;
+      }
+
+      scores.push(score);
+      scoreInput.value = '';
+      render();
+    }
+
+    addBtn.addEventListener('click', addScore);
+    scoreInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') addScore();
+    });
+
+    render();
+  </script>
+
+</body>
+</html>
